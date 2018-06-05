@@ -128,4 +128,7 @@
       <Name>Tierras</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TierrasLogo.png" />
+  </ItemGroup>
 </Project>

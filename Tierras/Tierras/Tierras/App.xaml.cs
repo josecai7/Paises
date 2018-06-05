@@ -13,7 +13,7 @@ namespace Tierras
 		{
 			InitializeComponent();
 
-			MainPage = new Tierras.MainPage();
+			MainPage = new Tierras.Views.LoginPage();
 		}
 
 		protected override void OnStart ()
