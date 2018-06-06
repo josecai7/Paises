@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Tierras.Views.LoginPage">
+             x:Class="Tierras.Views.LoginPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="Login">
     <ContentPage.Content>
-        <StackLayout
+        <StackLayout BindingContext="{Binding Login}"
             Padding="20">
             <Label 
                 Text="Tierras"
@@ -13,30 +15,86 @@
             </Label>
             <Image Source="TierrasLogo.png"
                    WidthRequest="200">
-                
+
             </Image>
-            <Label 
-                Text="E-Mail">
-            </Label>
-            <Entry 
-                Keyboard="Email"
-                Placeholder="Introduzca el email...">
-            </Entry>
-            <Label 
-                Text="Contraseña">
-            </Label>
-            <Entry 
-                IsPassword="true"
-                Placeholder="Introduce la contraseña...">
-            </Entry>
-            <Button 
-                Text="Login"
-                TextColor="White"
-                BorderRadius="5"
-                BackgroundColor="Navy"
+            <Grid
+                Margin="0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    Text="E-Mail"
+                    Grid.Row="0"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="0">
+                </Label>
+
+                <Entry 
+                    Keyboard="Email"
+                    Text="{Binding Email,Mode=TwoWay}"
+                    Placeholder="Introduzca el email..."
+                    Grid.Row="0"
+                    Grid.Column="1">
+                </Entry>
+
+                <Label 
+                    Text="Contraseña"   
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalTextAlignment="Center">
+                </Label>
+
+                <Entry 
+                    IsPassword="true"
+                    Text="{Binding Password,Mode=TwoWay}"
+                    Placeholder="Introduce la contraseña..."
+                    Grid.Row="1"
+                    Grid.Column="1">
+                </Entry>
+
+            </Grid>
+            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}"></ActivityIndicator>
+                <StackLayout
+                Orientation="Horizontal">
+                <Label 
+                    Text="Recordarme"
+                    VerticalTextAlignment="Center">
+                </Label>
+
+                <Switch
+                    HorizontalOptions="EndAndExpand"
+                    IsToggled="{Binding IsRemember,Mode=TwoWay}">
+
+                </Switch>
+            </StackLayout>
+
+            <StackLayout
                 VerticalOptions="EndAndExpand"
+
+                HorizontalOptions="CenterAndExpand">
+                
+                <Button 
+                    Text="Login"
+                    TextColor="White"
+                    Command="{Binding LoginCommand}"
+                    BorderRadius="5"
+                    BackgroundColor="#97D8B2"
+                    WidthRequest="300"
                 >
-            </Button>
+                </Button>
+                <Button             
+                    Text="Entrar con facebook"
+                    TextColor="White"
+                    BorderRadius="5"
+                    BackgroundColor="#3b5998">
+                </Button>
+            </StackLayout>
+
+
+
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

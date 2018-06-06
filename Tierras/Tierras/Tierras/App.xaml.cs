@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Tierras.Views;
 using Xamarin.Forms;
 
 namespace Tierras
@@ -13,7 +13,7 @@ namespace Tierras
 		{
 			InitializeComponent();
 
-			MainPage = new Tierras.Views.LoginPage();
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
 		protected override void OnStart ()
