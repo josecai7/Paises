@@ -7,12 +7,7 @@
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Login}"
             Padding="20">
-            <Label 
-                Text="Tierras"
-                FontSize="Large"
-                FontAttributes="Bold"
-                HorizontalOptions="Center">
-            </Label>
+            
             <Image Source="TierrasLogo.png"
                    WidthRequest="200">
 
@@ -55,7 +50,9 @@
                 </Entry>
 
             </Grid>
-            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}"></ActivityIndicator>
+            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}" VerticalOptions="CenterAndExpand">
+                
+            </ActivityIndicator>
                 <StackLayout
                 Orientation="Horizontal">
                 <Label 
@@ -82,13 +79,15 @@
                     BorderRadius="5"
                     BackgroundColor="#97D8B2"
                     WidthRequest="300"
+                    IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
                 >
                 </Button>
                 <Button             
                     Text="Entrar con facebook"
                     TextColor="White"
                     BorderRadius="5"
-                    BackgroundColor="#3b5998">
+                    BackgroundColor="#3b5998"
+                    IsEnabled="{Binding IsEnabled,Mode=TwoWay}">
                 </Button>
             </StackLayout>
 
