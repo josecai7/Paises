@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using Tierras.Views;
 using Xamarin.Forms;
 
 namespace Tierras.ViewModels
@@ -12,6 +13,7 @@ namespace Tierras.ViewModels
     {
 
         #region Attributes
+        private string email;
         private string password;
         private bool isRunning;
         private bool isEnabled;
@@ -19,7 +21,11 @@ namespace Tierras.ViewModels
 
         #region Properties
 
-        public string Email { get; set; }
+        public string Email
+        {
+            get { return email; }
+            set { SetValue( ref email, value ); }
+        }
         public string Password
         {
             get { return password; }
@@ -48,15 +54,19 @@ namespace Tierras.ViewModels
                 return new RelayCommand(Login);
             }
         }
+        #endregion
 
         public LoginViewModel()
         {
             IsRemember = false;
             IsEnabled = true;
+            Email = "jasoljim92@gmail.com";
+            Password = "lugubre14";
         }
 
         private async void Login()
         {
+
             if ( string.IsNullOrEmpty( this.Email ) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error","Introduce el Email","Aceptar");
@@ -81,10 +91,13 @@ namespace Tierras.ViewModels
 
             this.isRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.DisplayAlert( "OK", "VAMOSSSS", "Aceptar" );
-        }
 
-        #endregion
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+
+            MainViewModel.GetInstance().Tierras = new TierrasViewModel();
+            await App.Current.MainPage.Navigation.PushAsync(new TierrasPage());
+        }
 
 
     }
