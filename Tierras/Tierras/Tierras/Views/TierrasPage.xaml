@@ -3,11 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tierras.Views.TierrasPage"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Tierrass">
+             Title="Tierras">
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding Lands}">
-            <Label Text="Welcome to Xamarin.Forms!"
-                   TextColor="Red"/>
+        <StackLayout BindingContext="{Binding Tierras}">
+            <SearchBar 
+                Text="{Binding Filter}"
+                SearchCommand="{Binding SearchCommand}"
+                Placeholder="Buscar...">
+            </SearchBar>
+            <ListView 
+                BackgroundColor="WhiteSmoke"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                SeparatorVisibility="None"
+                ItemsSource="{Binding TierrasList}"
+                RefreshCommand="{Binding RefreshCommand}"
+                SelectedItem="{Binding SelectedItem}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="8,4,8,4"
+                                   BackgroundColor="WhiteSmoke">
+                                <Frame CornerRadius="5" 
+                                   Padding="4">
+                                    <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                    <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Micro" 
+                                            Text="{Binding Name}"
+                                            TextColor="Black">
+                                    </Label>
+                                    <Label 
+                                            Text="{Binding Capital}"
+                                            FontSize="Micro" 
+                                            TextColor="Black">
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                            </Frame>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

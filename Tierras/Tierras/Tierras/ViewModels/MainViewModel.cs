@@ -10,6 +10,7 @@ namespace Tierras.ViewModels
 
         public LoginViewModel Login { get; set; }
         public TierrasViewModel Tierras { get; set; }
+        public TierraViewModel Tierra { get; set; }
 
         #endregion
 
