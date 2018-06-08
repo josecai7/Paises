@@ -9,7 +9,7 @@
             Padding="20">
             
             <Image Source="TierrasLogo.png"
-                   WidthRequest="150">
+                   WidthRequest="0">
 
             </Image>
             <Grid
@@ -50,7 +50,7 @@
                 </Entry>
 
             </Grid>
-            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}" VerticalOptions="CenterAndExpand">
+            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}"  VerticalOptions="CenterAndExpand" BackgroundColor="Red" Color="Yellow">
                 
             </ActivityIndicator>
                 <StackLayout

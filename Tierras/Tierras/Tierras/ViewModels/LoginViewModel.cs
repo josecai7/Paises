@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using Lands.Services;
 using Tierras.Views;
 using Xamarin.Forms;
 
@@ -11,6 +12,11 @@ namespace Tierras.ViewModels
 {
     public class LoginViewModel: BaseViewModel
     {
+        #region Services
+
+        private ApiService apiService;
+
+        #endregion
 
         #region Attributes
         private string email;
@@ -60,8 +66,7 @@ namespace Tierras.ViewModels
         {
             IsRemember = false;
             IsEnabled = true;
-            Email = "jasoljim92@gmail.com";
-            Password = "lugubre14";
+            apiService = new ApiService();
         }
 
         private async void Login()
@@ -81,19 +86,40 @@ namespace Tierras.ViewModels
             this.isRunning = true;
             this.IsEnabled = false;
 
-
-            if ( Password != "lugubre14" || Email != "jasoljim92@gmail.com" )
+            var connection = apiService.CheckConnection();
+            if ( !connection.Result.IsSuccess )
             {
-                Password = "";
-                await Application.Current.MainPage.DisplayAlert( "Error", "Login incorrecto", "Aceptar" );
+                this.isRunning = true;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert( "Error", "Revise su conexion a internet", "Aceptar" );
                 return;
             }
 
-            this.isRunning = false;
+            var token = await apiService.GetToken( "http://tierrasapi.azurewebsites.net", Email,Password);
+
+            if ( token == null )
+            {
+                this.isRunning = true;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert( "Error", "Algo fue mal...intentalo de nuevo mas tarde", "Aceptar" );
+                return;
+            }
+            else if ( string.IsNullOrEmpty( token.AccessToken ) )
+            {
+                this.isRunning = true;
+                this.IsEnabled = true;
+                Password = string.Empty;
+                await Application.Current.MainPage.DisplayAlert( "Error",token.ErrorDescription , "Aceptar" );
+                return;
+            }
+            else
+            {
+                MainViewModel.GetInstance().Token = token;
+            }
+
+            this.isRunning = true;
             this.IsEnabled = true;
 
-            this.Email = string.Empty;
-            this.Password = string.Empty;
 
             MainViewModel.GetInstance().Tierras = new TierrasViewModel();
             await App.Current.MainPage.Navigation.PushAsync(new TierrasPage());

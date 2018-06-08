@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Tierras.Models;
 
 namespace Tierras.ViewModels
 {
     public class MainViewModel
     {
+        #region
+            public  TokenResponse Token { get; set; }
+        #endregion
+
         #region ViewModels
 
         public LoginViewModel Login { get; set; }
