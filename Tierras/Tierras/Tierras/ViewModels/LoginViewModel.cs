@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Lands.Services;
+using Tierras.Helpers;
+using Tierras.Resources;
 using Tierras.Views;
 using Xamarin.Forms;
 
@@ -71,25 +73,26 @@ namespace Tierras.ViewModels
 
         private async void Login()
         {
+            
 
             if ( string.IsNullOrEmpty( this.Email ) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error","Introduce el Email","Aceptar");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.EmailValidation, Languages.Accept);
                 return;
             }
             if ( string.IsNullOrEmpty( this.Password ) )
             {
-                await Application.Current.MainPage.DisplayAlert( "Error", "Introduce la contraseña", "Aceptar" );
+                await Application.Current.MainPage.DisplayAlert( Languages.Error, Languages.PassValidation, Languages.Accept );
                 return;
             }
 
-            this.isRunning = true;
+            IsRunning = true;
             this.IsEnabled = false;
 
             var connection = apiService.CheckConnection();
             if ( !connection.Result.IsSuccess )
             {
-                this.isRunning = true;
+                IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert( "Error", "Revise su conexion a internet", "Aceptar" );
                 return;
@@ -99,14 +102,14 @@ namespace Tierras.ViewModels
 
             if ( token == null )
             {
-                this.isRunning = true;
+                IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert( "Error", "Algo fue mal...intentalo de nuevo mas tarde", "Aceptar" );
                 return;
             }
             else if ( string.IsNullOrEmpty( token.AccessToken ) )
             {
-                this.isRunning = true;
+                IsRunning = false;
                 this.IsEnabled = true;
                 Password = string.Empty;
                 await Application.Current.MainPage.DisplayAlert( "Error",token.ErrorDescription , "Aceptar" );
@@ -117,7 +120,7 @@ namespace Tierras.ViewModels
                 MainViewModel.GetInstance().Token = token;
             }
 
-            this.isRunning = true;
+            IsRunning = false;
             this.IsEnabled = true;
 
 

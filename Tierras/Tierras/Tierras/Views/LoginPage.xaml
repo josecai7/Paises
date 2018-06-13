@@ -2,98 +2,153 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tierras.Views.LoginPage"
+             xmlns:local="clr-namespace:Tierras.CustomControls"
+             xmlns:i18n="clr-namespace:Tierras.Helpers"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
-             Title="Login">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout BindingContext="{Binding Login}"
-            Padding="20">
-            
-            <Image Source="TierrasLogo.png"
-                   WidthRequest="0">
 
-            </Image>
+        <Grid BindingContext="{Binding Login}"
+            BackgroundColor="#2E8E87">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid
-                Margin="0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                RowSpacing="0"
+                Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
 
-                <Label 
-                    Text="E-Mail"
+                <Label
                     Grid.Row="0"
-                    VerticalTextAlignment="Center"
-                    Grid.Column="0">
+                    Text="APPDECORS"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="Large"
+                    TextColor="White"
+                    Margin="0,0,0,8">
+
                 </Label>
 
-                <Entry 
-                    Keyboard="Email"
-                    Text="{Binding Email,Mode=TwoWay}"
-                    Placeholder="Introduzca el email..."
-                    Grid.Row="0"
-                    Grid.Column="1">
-                </Entry>
-
-                <Label 
-                    Text="Contraseña"   
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    VerticalTextAlignment="Center">
-                </Label>
-
-                <Entry 
-                    IsPassword="true"
-                    Text="{Binding Password,Mode=TwoWay}"
-                    Placeholder="Introduce la contraseña..."
-                    Grid.Row="1"
-                    Grid.Column="1">
-                </Entry>
-
-            </Grid>
-            <ActivityIndicator IsRunning="{Binding IsRunning,Mode=TwoWay}"  VerticalOptions="CenterAndExpand" BackgroundColor="Red" Color="Yellow">
-                
-            </ActivityIndicator>
                 <StackLayout
-                Orientation="Horizontal">
-                <Label 
-                    Text="Recordarme"
-                    VerticalTextAlignment="Center">
+                    Grid.Row="1">
+                    <Label
+                        Text="Login to your account"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontSize="Medium"
+                        TextColor="White">
+
+                    </Label>
+                    <Grid
+                            RowSpacing="0"
+                        HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <local:CustomEntry 
+                        Grid.Column="1"
+                        Text="{Binding Email,Mode=TwoWay}"
+                        Placeholder="{i18n:Translate User}"
+                        FontSize="Small"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="White"
+                            VerticalOptions="FillAndExpand"
+                        />
+                    </Grid>
+
+
+                    <Grid
+                            RowSpacing="0"
+                        HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <local:CustomEntry 
+                        Grid.Column="1"
+                        Text="{Binding Password,Mode=TwoWay}"
+                        IsPassword="True"
+                        FontSize="Small"
+                        Placeholder="{i18n:Translate Password}"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="White"
+                            VerticalOptions="FillAndExpand">
+                        </local:CustomEntry>
+                    </Grid>
+
+                    <Grid
+                            RowSpacing="0"
+                        HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <local:CustomButton 
+                        Grid.Column="1"
+                        TextColor="White"
+                        Text="LOGIN"  
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#A4DEAD"
+                        VerticalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
+                        Command="{Binding LoginCommand}">
+                        </local:CustomButton>
+                    </Grid>
+                    <ActivityIndicator
+                        IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                        VerticalOptions="CenterAndExpand"
+                        Color="#0D2149">
+                    </ActivityIndicator>
+                </StackLayout>
+
+
+                <Label
+                    Grid.Row="2"
+                    Text="Forgot password?"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    FontSize="14"
+                    Margin="0,0,0,8"
+                    TextColor="White">
+
                 </Label>
-
-                <Switch
-                    HorizontalOptions="EndAndExpand"
-                    IsToggled="{Binding IsRemember,Mode=TwoWay}">
-
-                </Switch>
-            </StackLayout>
-
-            <StackLayout
-                VerticalOptions="EndAndExpand"
-
-                HorizontalOptions="CenterAndExpand">
-                
-                <Button 
-                    Text="Login"
+            </Grid>
+            <StackLayout 
+                BackgroundColor="White" 
+                Grid.Row="1"
+                Padding="16">
+                <Label
+                    Text="Not A Member yet?"
+                    TextColor="#2E8E87"
+                    FontSize="20"
+                    HorizontalOptions="Center">
+                </Label>
+                <Button
+                    Text="Sing up"
                     TextColor="White"
-                    Command="{Binding LoginCommand}"
-                    BorderRadius="5"
-                    BackgroundColor="#97D8B2"
-                    WidthRequest="300"
-                    IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
-                >
-                </Button>
-                <Button             
-                    Text="Entrar con facebook"
-                    TextColor="White"
-                    BorderRadius="5"
-                    BackgroundColor="#3b5998"
+                    HorizontalOptions="Center"
+                    BorderRadius="20"
+                    CornerRadius="20"
+                    BackgroundColor="#2E8E87"
                     IsEnabled="{Binding IsEnabled,Mode=TwoWay}">
+
                 </Button>
+
+
             </StackLayout>
 
 
-
-            
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
