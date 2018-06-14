@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tierras.Models
+namespace Tierras.Domain
 {
     public class Response
     {

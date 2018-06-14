@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Tierras.Domain;
 using Tierras.Models;
 
-namespace Lands.Services
+namespace Tierras.Services
 { 
     public class ApiService
     {

@@ -1,12 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using Lands.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Tierras.Domain;
 using Tierras.Models;
+using Tierras.Services;
 using Tierras.Views;
 
 namespace Tierras.ViewModels

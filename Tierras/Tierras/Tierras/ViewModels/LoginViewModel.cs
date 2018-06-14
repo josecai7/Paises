@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using Lands.Services;
 using Tierras.Helpers;
 using Tierras.Resources;
+using Tierras.Services;
 using Tierras.Views;
 using Xamarin.Forms;
 

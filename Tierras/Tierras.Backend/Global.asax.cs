@@ -12,10 +12,17 @@ namespace Tierras.Backend
     {
         protected void Application_Start()
         {
+            this.CheckRolesAndSuperUser();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        private void CheckRolesAndSuperUser()
+        {
+            UsersHelper.CheckRole( "Admin" );
+            UsersHelper.CheckRole( "User" );
+            UsersHelper.CheckSuperUser();
         }
     }
 }
