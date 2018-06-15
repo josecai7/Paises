@@ -24,6 +24,7 @@ namespace Tierras.ViewModels
         private string email;
         private string password;
         private bool isRunning;
+        private bool isRemember;
         private bool isEnabled;
         #endregion
 
@@ -44,7 +45,11 @@ namespace Tierras.ViewModels
             get { return isRunning; }
             set { SetValue( ref isRunning, value ); }
         }
-        public bool IsRemember { get; set; }
+        public bool IsRemember
+        {
+            get { return isRemember; }
+            set { SetValue( ref isRemember, value ); }
+        }
         public bool IsEnabled
         {
             get { return isEnabled; }
@@ -117,7 +122,13 @@ namespace Tierras.ViewModels
             }
             else
             {
-                MainViewModel.GetInstance().Token = token;
+                MainViewModel.GetInstance().Token = token.AccessToken;
+                MainViewModel.GetInstance().TokenType = token.TokenType;
+                if ( IsRemember )
+                {
+                    Settings.Token = token.AccessToken;
+                    Settings.TokenType = token.TokenType;
+                }
             }
 
             IsRunning = false;
@@ -125,7 +136,7 @@ namespace Tierras.ViewModels
 
 
             MainViewModel.GetInstance().Tierras = new TierrasViewModel();
-            await App.Current.MainPage.Navigation.PushAsync(new TierrasPage());
+            Application.Current.MainPage=new MasterPage();
         }
 
 

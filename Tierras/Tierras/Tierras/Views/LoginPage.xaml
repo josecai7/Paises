@@ -105,6 +105,25 @@
                         Command="{Binding LoginCommand}">
                         </local:CustomButton>
                     </Grid>
+                    <Grid
+                            RowSpacing="0"
+                        HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout 
+                            Orientation="Horizontal" 
+                            Spacing="0"
+                            Grid.Column="1"
+                            HorizontalOptions="Start">
+                            <Switch IsToggled="{Binding IsRemember, Mode=TwoWay}"/>
+                            <Label Text="Remember me?"
+                                   VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+
                     <ActivityIndicator
                         IsRunning="{Binding IsRunning, Mode=TwoWay}"
                         VerticalOptions="CenterAndExpand"

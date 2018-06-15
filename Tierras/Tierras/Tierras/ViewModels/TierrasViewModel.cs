@@ -122,14 +122,14 @@ namespace Tierras.ViewModels
                 else
                 {
                     IsRefreshing = false;
-                    await App.Current.MainPage.Navigation.PopAsync();
+                    await App.Navigator.PopAsync();
                     return;
                 }
             }
             else
             {
                 IsRefreshing = false;
-                await App.Current.MainPage.Navigation.PopAsync();
+                await App.Navigator.PopAsync();
                 return;
             }
 
@@ -137,7 +137,7 @@ namespace Tierras.ViewModels
         private async void ManageSelectedItem(Tierra pSelectedItem)
         {
             MainViewModel.GetInstance().Tierra = new TierraViewModel(pSelectedItem);
-            await App.Current.MainPage.Navigation.PushAsync( new LandTabbedPage() );
+            await App.Navigator.PushAsync( new LandTabbedPage() );
         }
         private void Search()
         {
