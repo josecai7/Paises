@@ -160,6 +160,7 @@
                     BorderRadius="20"
                     CornerRadius="20"
                     BackgroundColor="#2E8E87"
+                    Command="{Binding RegisterCommand}"
                     IsEnabled="{Binding IsEnabled,Mode=TwoWay}">
 
                 </Button>

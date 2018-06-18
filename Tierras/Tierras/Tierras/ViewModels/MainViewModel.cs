@@ -20,6 +20,7 @@ namespace Tierras.ViewModels
         #region ViewModels
 
         public LoginViewModel Login { get; set; }
+        public RegisterViewModel Register { get; set; }
         public TierrasViewModel Tierras { get; set; }
         public TierraViewModel Tierra { get; set; }
 

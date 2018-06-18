@@ -22,7 +22,7 @@ namespace Tierras
 
             if ( string.IsNullOrEmpty( Settings.Token ) )
             {
-                MainPage = new LoginPage();
+                MainPage = new NavigationPage(new LoginPage());
             }
             else
             {

@@ -67,6 +67,13 @@ namespace Tierras.ViewModels
                 return new RelayCommand(Login);
             }
         }
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand( Register );
+            }
+        }
         #endregion
 
         public LoginViewModel()
@@ -137,6 +144,11 @@ namespace Tierras.ViewModels
 
             MainViewModel.GetInstance().Tierras = new TierrasViewModel();
             Application.Current.MainPage=new MasterPage();
+        }
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync( new RegisterPage() );
         }
 
 
