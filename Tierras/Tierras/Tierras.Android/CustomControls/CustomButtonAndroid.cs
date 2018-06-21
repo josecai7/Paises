@@ -8,10 +8,10 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-using Tierras.CustomControls;
 using Tierras.Droid.CustomControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Tierras1.CustomControls;
 
 [assembly: ExportRenderer( typeof( CustomButton ), typeof( CustomButtonAndroid ) )]
 namespace Tierras.Droid.CustomControls

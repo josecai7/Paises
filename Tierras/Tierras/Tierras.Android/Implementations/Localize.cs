@@ -4,8 +4,8 @@ namespace Tierras.Droid.Implementations
 {
     using System.Globalization;
     using System.Threading;
-    using Tierras.Helpers;
-    using Tierras.Interfaces;
+    using Tierras1.Helpers;
+    using Tierras1.Interfaces;
 
     public class Localize : ILocalize
     {

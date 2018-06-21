@@ -138,16 +138,16 @@
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
       <Version>2.4.3.840</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Tierras\Tierras.csproj">
-      <Project>{E86F1F18-90FA-4A17-894E-FBD2E575D090}</Project>
-      <Name>Tierras</Name>
-    </ProjectReference>
+    <BundleResource Include="Resources\TierrasLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\TierrasLogo.png" />
+    <ProjectReference Include="..\..\Tierras1\Tierras1.csproj">
+      <Project>{5bd6f822-685d-4608-bc34-cddf59bb1596}</Project>
+      <Name>Tierras1</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

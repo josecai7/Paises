@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Tierras.CustomControls;
+using Tierras1.CustomControls;
 using Tierras.Droid.CustomControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tierras1.Views.RegisterPage"
+             BindingContext="{Binding Main,Source={StaticResource Locator}}"
+             Title="Registrar un usuario">
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Register}">
+            <StackLayout>
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="250"
+                    Source="{Binding ImageSource}">
+                    
+                </Image>
+                <Entry           
+                Text="{Binding Name}"
+                Placeholder="Name">
+                </Entry>
+                <Entry           
+                Text="{Binding Apellidos}"
+                Placeholder="Name">
+                </Entry>
+                <Entry           
+                Text="{Binding Email}"
+                Placeholder="Name">
+                </Entry>
+                <Entry           
+                Text="{Binding Telefono}"
+                Placeholder="Name">
+                </Entry>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
