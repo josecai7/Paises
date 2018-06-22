@@ -110,7 +110,7 @@ namespace Tierras1.ViewModels
                 return;
             }
 
-            var token = await apiService.GetToken( "http://tierrasapi.azurewebsites.net", Email,Password);
+            var token = await apiService.GetToken( Application.Current.Resources["APISecurity"].ToString(), Email,Password);
 
             if ( token == null )
             {

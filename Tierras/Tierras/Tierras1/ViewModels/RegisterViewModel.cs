@@ -5,18 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Tierras1.Helpers;
+using Tierras1.Models;
+using Tierras1.Services;
 using Xamarin.Forms;
 
 namespace Tierras1.ViewModels
 {
     public class RegisterViewModel:BaseViewModel
     {
+        public RegisterViewModel()
+        {
+            apiService = new ApiService();
+        }
+
         # region Attributes
+
+        ApiService apiService;
 
         private string name;
         private string surname;
         private string email;
         private string phone;
+        private string password;
         private ImageSource imagesource;
         private MediaFile file;
 
@@ -31,7 +42,6 @@ namespace Tierras1.ViewModels
             }
             set
             {
-                name = value;
                 SetValue( ref name, value );
             }
         }
@@ -43,7 +53,6 @@ namespace Tierras1.ViewModels
             }
             set
             {
-                surname = value;
                 SetValue( ref surname, value );
             }
         }
@@ -55,7 +64,6 @@ namespace Tierras1.ViewModels
             }
             set
             {
-                email = value;
                 SetValue( ref email, value );
             }
         }
@@ -67,8 +75,18 @@ namespace Tierras1.ViewModels
             }
             set
             {
-                phone = value;
                 SetValue( ref phone, value );
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                SetValue( ref password, value );
             }
         }
         public ImageSource ImageSource
@@ -105,8 +123,29 @@ namespace Tierras1.ViewModels
         #endregion
 
         #region Methods
-        public void Register ()
+        public async void Register ()
         {
+            byte[] imageArray = null;
+
+            if ( file != null )
+            {
+                imageArray = FilesHelper.ReadFully(file.GetStream());
+            }
+
+            User user = new User();
+            user.FirstName = Name;
+            user.LastName = Surname;
+            user.Email = Email;
+            user.Telephone = Phone;
+            user.ImageArray = imageArray;
+            user.UserTypeId = 1;
+            user.Password = Password;
+
+            var response = await apiService.Post( 
+                Application.Current.Resources["APISecurity"].ToString(),
+                "/api",
+                "/Users",
+                user);
 
         }
         public async void TakePhoto()

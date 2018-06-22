@@ -9,6 +9,10 @@
 		<!-- Application resource dictionary -->
         <ResourceDictionary>
             <infra:InstanceLocator x:Key="Locator" />
+
+            <x:String x:Key="APITierras">http://restcountries.eu</x:String>
+            <x:String x:Key="APISecurity">http://tierrasapi.azurewebsites.net</x:String>
+
         </ResourceDictionary>
 
 	</Application.Resources>

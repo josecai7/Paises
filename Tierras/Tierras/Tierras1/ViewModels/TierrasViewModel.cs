@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Tierras1.Models;
 using Tierras1.Services;
 using Tierras1.Views;
+using Xamarin.Forms;
 
 namespace Tierras1.ViewModels
 {
@@ -111,7 +112,7 @@ namespace Tierras1.ViewModels
             var connection = apiService.CheckConnection().Result;
             if ( connection.IsSuccess )
             {
-                Response response = await apiService.GetList<Tierra>( "http://restcountries.eu", "/rest", "/v2/all" );
+                Response response = await apiService.GetList<Tierra>( Application.Current.Resources["APITierras"].ToString(), "/rest", "/v2/all" );
                 if ( response.IsSuccess )
                 {
                     tierrasOriginal = response.Result as List<Tierra>;

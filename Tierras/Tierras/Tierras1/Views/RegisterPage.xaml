@@ -23,7 +23,7 @@
                 Placeholder="Name">
                 </Entry>
                 <Entry           
-                Text="{Binding Apellidos}"
+                Text="{Binding Surname}"
                 Placeholder="Apellidos">
                 </Entry>
                 <Entry           
@@ -31,9 +31,17 @@
                 Placeholder="Email">
                 </Entry>
                 <Entry           
-                Text="{Binding Telefono}"
+                Text="{Binding Phone}"
                 Placeholder="Telefono">
                 </Entry>
+                <Entry           
+                Text="{Binding Password}"
+                Placeholder="Password">
+                </Entry>
+                <Button
+                Command="{Binding RegisterCommand}"
+                Text="Registrarte">
+                </Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
