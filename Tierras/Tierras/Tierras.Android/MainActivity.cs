@@ -7,6 +7,8 @@ using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
 using Tierras1;
+using Plugin.Permissions;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Tierras.Droid
 {
@@ -21,8 +23,13 @@ namespace Tierras.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            ImageCircleRenderer.Init();
             CachedImageRenderer.Init(false);
             LoadApplication(new App());
+        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult( requestCode, permissions, grantResults );
         }
     }
 }

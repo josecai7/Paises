@@ -2,32 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tierras1.Views.RegisterPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BindingContext="{Binding Main,Source={StaticResource Locator}}"
              Title="Registrar un usuario">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Register}">
             <StackLayout>
-                <Image
-                    Aspect="AspectFill"
-                    HeightRequest="250"
+                <controls:CircleImage
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    HorizontalOptions="Center"
                     Source="{Binding ImageSource}">
-                    
-                </Image>
+                    <controls:CircleImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TakePhotoCommand}"/>
+                    </controls:CircleImage.GestureRecognizers>
+                </controls:CircleImage>
                 <Entry           
                 Text="{Binding Name}"
                 Placeholder="Name">
                 </Entry>
                 <Entry           
                 Text="{Binding Apellidos}"
-                Placeholder="Name">
+                Placeholder="Apellidos">
                 </Entry>
                 <Entry           
                 Text="{Binding Email}"
-                Placeholder="Name">
+                Placeholder="Email">
                 </Entry>
                 <Entry           
                 Text="{Binding Telefono}"
-                Placeholder="Name">
+                Placeholder="Telefono">
                 </Entry>
             </StackLayout>
         </ScrollView>

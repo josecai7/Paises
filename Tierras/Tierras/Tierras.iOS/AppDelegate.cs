@@ -4,7 +4,7 @@ using System.Linq;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
-
+using Tierras1;
 namespace Tierras.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
