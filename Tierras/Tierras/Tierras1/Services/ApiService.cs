@@ -331,6 +331,42 @@ namespace Tierras1.Services
                 };
             }
         }
+        public class UserMail
+        {
+            public string Email { get; set; }
+        }
+        public async Task<User> GetUserByEmail(
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            string email)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject( new UserMail() { Email = email } );
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8,
+                    "application/json" );
+                var client = new HttpClient();
+                client.BaseAddress = new Uri( urlBase );
+                var url = string.Format( "{0}{1}", servicePrefix, controller );
+                var response = await client.PostAsync( url, content );
+
+                if ( !response.IsSuccessStatusCode )
+                {
+                    return null;
+                }
+
+                var result = await response.Content.ReadAsStringAsync();
+
+                return JsonConvert.DeserializeObject<User>( result );
+            }
+            catch ( Exception ex )
+            {
+                return null;
+            }
+        }
 
         public async Task<Response> Put<T>(
             string urlBase,

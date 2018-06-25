@@ -26,7 +26,7 @@ namespace Tierras.Domain
         [DataType( DataType.EmailAddress )]
         public string Email { get; set; }
 
-        [MaxLength( 20, ErrorMessage = "The field {0} only can contains a maximum of {1} characters lenght." )]
+        [MaxLength( 25, ErrorMessage = "The field {0} only can contains a maximum of {1} characters lenght." )]
         [DataType( DataType.PhoneNumber )]
         public string Telephone { get; set; }
 

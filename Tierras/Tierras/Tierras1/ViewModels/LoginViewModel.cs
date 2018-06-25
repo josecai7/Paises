@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Tierras1.Helpers;
+using Tierras1.Models;
 using Tierras1.Resources;
 using Tierras1.Services;
 using Tierras1.Views;
@@ -141,6 +142,13 @@ namespace Tierras1.ViewModels
             IsRunning = false;
             this.IsEnabled = true;
 
+
+            User user = await apiService.GetUserByEmail(
+                Application.Current.Resources["APISecurity"].ToString(),
+                "/api",
+                "/Users/GetUserByEmail",Email );
+
+            await Application.Current.MainPage.DisplayAlert( "Hola"+user.FirstName, "", "Aceptar" );
 
             MainViewModel.GetInstance().Tierras1 = new TierrasViewModel();
             Application.Current.MainPage=new MasterPage();

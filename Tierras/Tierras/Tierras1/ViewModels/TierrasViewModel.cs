@@ -102,6 +102,12 @@ namespace Tierras1.ViewModels
         public TierrasViewModel()
         {
             apiService = new ApiService();
+
+
+
+
+
+
             LoadLands();
         }
         #endregion
