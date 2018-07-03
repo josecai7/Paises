@@ -114,6 +114,7 @@ namespace Tierras1.ViewModels
 
         private async void LoadLands()
         {
+            string s = MainViewModel.GetInstance().User.FirstName;
             IsRefreshing = true;
             var connection = apiService.CheckConnection().Result;
             if ( connection.IsSuccess )

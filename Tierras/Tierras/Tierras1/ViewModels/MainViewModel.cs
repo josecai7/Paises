@@ -11,6 +11,7 @@ namespace Tierras1.ViewModels
         #region Properties
 
         public string Token { get; set; }
+        public User User { get; set; }
 
         public string TokenType { get; set; }
 

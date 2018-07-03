@@ -142,15 +142,12 @@ namespace Tierras1.ViewModels
             IsRunning = false;
             this.IsEnabled = true;
 
-
-            User user = await apiService.GetUserByEmail(
+            MainViewModel.GetInstance().Tierras1 = new TierrasViewModel();
+            MainViewModel.GetInstance().User = await apiService.GetUserByEmail(
                 Application.Current.Resources["APISecurity"].ToString(),
                 "/api",
-                "/Users/GetUserByEmail",Email );
+                "/Users/GetUserByEmail", Email );
 
-            await Application.Current.MainPage.DisplayAlert( "Hola"+user.FirstName, "", "Aceptar" );
-
-            MainViewModel.GetInstance().Tierras1 = new TierrasViewModel();
             Application.Current.MainPage=new MasterPage();
         }
         private async void Register()
