@@ -82,6 +82,9 @@ namespace Tierras1.ViewModels
             IsRemember = false;
             IsEnabled = true;
             apiService = new ApiService();
+
+            Email = "pacomerlo@gmail.com";
+            Password = "123456";
         }
 
         private async void Login()
@@ -141,14 +144,22 @@ namespace Tierras1.ViewModels
 
             IsRunning = false;
             this.IsEnabled = true;
+            try
+            {
+                MainViewModel.GetInstance().User = await apiService.GetUserByEmail(
+                    Application.Current.Resources["APISecurity"].ToString(),
+                    "/api",
+                    "/Users/GetUserByEmail", Email );
 
-            MainViewModel.GetInstance().Tierras1 = new TierrasViewModel();
-            MainViewModel.GetInstance().User = await apiService.GetUserByEmail(
-                Application.Current.Resources["APISecurity"].ToString(),
-                "/api",
-                "/Users/GetUserByEmail", Email );
+                MainViewModel.GetInstance().Tierras1 = new TierrasViewModel();
 
-            Application.Current.MainPage=new MasterPage();
+                Application.Current.MainPage = new MasterPage();
+            }
+            catch ( Exception exc )
+            {
+                string str = exc.Message;
+            }
+
         }
         private async void Register()
         {

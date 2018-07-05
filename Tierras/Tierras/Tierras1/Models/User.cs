@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Tierras1.Models
 {
@@ -22,5 +23,19 @@ namespace Tierras1.Models
 
         public string Password { get; set; }
         public byte[] ImageArray { get; set; }
+        public string ImagePath { get; set; }
+        public string ImageFullPath
+        {
+            get
+            {
+                if ( string.IsNullOrEmpty( ImagePath ) )
+                {
+                    return "noimage";
+                }
+                return string.Format(
+                    Application.Current.Resources["APISecurity"].ToString() +"/{0}",
+                    ImagePath.Substring( 1 ) );
+            }
+        }
     }
 }
